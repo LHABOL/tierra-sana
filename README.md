@@ -92,15 +92,16 @@ La sección de **Pago** está marcada como punto de integración para
 - JSON-LD `Product` en las páginas de detalle
 - Jerarquía de encabezados y `alt` en imágenes
 
-## Lianas de selva en las orillas
+## Marco de lianas reales
 
-`EdgeVines` se coloca **por sección** (`<EdgeVines tone="light|dark" />`) e va
-**en el fondo**: detrás del contenido (`-z-[1]`, sobre el color de la sección) y
-se desplaza con el scroll. Cada orilla es una cortina densa de tallos sinuosos
-con hojas, flores y zarcillos; `tone` fija los verdes para que contrasten con
-marfil o con oliva. Bajan despacio con un serpenteo horizontal y un vaivén más
-lento —como una serpiente. Solo se anima `transform` (`@keyframes vine-descend`
-+ `vine-sway` en `globals.css`), sin JavaScript. Para ajustarlo se edita
+`EdgeVines` (`<EdgeVines tone="light|dark" />`, por sección) dibuja lianas
+fotográficas en los **4 bordes**, **en el fondo**: detrás del contenido
+(`-z-[1]`) y se desplazan con el scroll. La liana es un fotograma del video de
+referencia recortado y sin fondo (`public/vines/vine-strip.webp`, ~82 KB; el
+`.png` queda de respaldo). El mosaico está espejado → se repite sin costura.
+Movimiento tipo serpiente 100% CSS: `@keyframes vine-serpent` con
+`animation-direction: alternate` (va y vuelve, nunca “salta”); dos capas
+desfasadas rompen la simetría. Se ajusta en
 [`src/components/ui/EdgeVines.tsx`](src/components/ui/EdgeVines.tsx). La sección
 contenedora necesita `relative isolate overflow-hidden`.
 `prefers-reduced-motion` deja las lianas quietas.

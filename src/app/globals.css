@@ -98,42 +98,24 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  /* lianas: sin descenso ni serpenteo, quietas */
+  /* lianas: quietas, sin serpenteo */
   .vine-strip {
-    transform: none !important;
-  }
-  .vine-sway {
-    transform: none !important;
+    translate: 0 0 !important;
+    rotate: 0deg !important;
   }
 }
 
-/* Lianas de las orillas: la tira baja despacio (con un serpenteo horizontal
-   sutil durante la bajada) y el contenedor añade un vaivén más lento, como
-   una serpiente. Solo `transform` → compuesto en GPU. */
-@keyframes vine-descend {
-  0% {
-    transform: translate3d(0, 0, 0);
+/* Marco de lianas: vaivén lateral + giro muy leve, tipo serpiente. Se usa con
+   `animation-direction: alternate` → va y vuelve, nunca “salta”. Propiedades
+   `translate` / `rotate` independientes → compuesto en GPU. */
+@keyframes vine-serpent {
+  from {
+    translate: -22px 0;
+    rotate: -0.7deg;
   }
-  25% {
-    transform: translate3d(6px, calc(var(--tile, 440px) * 0.25), 0);
-  }
-  50% {
-    transform: translate3d(0, calc(var(--tile, 440px) * 0.5), 0);
-  }
-  75% {
-    transform: translate3d(-6px, calc(var(--tile, 440px) * 0.75), 0);
-  }
-  100% {
-    transform: translate3d(0, var(--tile, 440px), 0);
-  }
-}
-@keyframes vine-sway {
-  0%,
-  100% {
-    transform: translateX(-7px) rotate(-1.3deg);
-  }
-  50% {
-    transform: translateX(8px) rotate(1.5deg);
+  to {
+    translate: 20px 0;
+    rotate: 0.8deg;
   }
 }
 

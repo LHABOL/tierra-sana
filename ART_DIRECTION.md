@@ -44,25 +44,26 @@ imperceptibles con Framer Motion:
 - `QuoteSection`: parallax de ±24px sobre el texto.
 - Hover botones: la flecha aparece y el `tracking` se abre ligeramente.
 
-### Cortina de lianas en las orillas (`EdgeVines`)
+### Marco de lianas reales (`EdgeVines`)
 
 Se coloca **por sección** (`<EdgeVines tone="light|dark" />` como primer hijo de
-un contenedor `relative isolate overflow-hidden`), **integrada en el fondo**:
-va detrás del contenido (`-z-[1]`, encima del color de la sección pero debajo
-del texto) y **se desplaza con el scroll** — no es fija.
+un contenedor `relative isolate overflow-hidden`), **en el fondo**: detrás del
+contenido (`-z-[1]`) y **se desplaza con el scroll**.
 
-- **Toque selvático denso**: cada orilla es una cortina de 4 tallos sinuosos
-  juntos, con hojas (3 verdes), flores y zarcillos. `tone` fija los verdes:
-  oscuros sobre marfil, claros sobre oliva/negro → contraste en ambos fondos.
-  Ancho de orilla `clamp(84px, 15vw, 210px)`.
-- **Movimiento como serpiente**, 100 % CSS (solo `transform`):
-  · `vine-descend` — la tira baja despacio (90–108 s) con un serpenteo
-    horizontal de ±6 px;
-  · `vine-sway` — el conjunto cuelga desde arriba y se mece más lento
-    (14–17 s, `transform-origin: top`).
-  El tramo (`--tile` = 460 px) se repite en vertical → bucle sin salto.
+- **Liana real, sin fondo**: es un fotograma del video de referencia recortado
+  y con el fondo gris eliminado por chroma-key
+  (`/public/vines/vine-strip.webp`, ~82 KB · `.png` de respaldo). El mosaico
+  está espejado → se repite sin costura a lo ancho.
+- **4 bordes** (`Band` top/bottom/left/right): la lámina horizontal se rota 90°
+  para los lados y se voltea para el borde inferior; grosor
+  `clamp(64px, 13vw, 188px)`.
+- **Movimiento como serpiente**, 100 % CSS: `@keyframes vine-serpent` (vaivén
+  lateral ±20 px + giro ≤ 0.8°) con `animation-direction: alternate` → **va y
+  vuelve, nunca salta**. Dos capas desfasadas rompen la simetría del espejo.
+  Propiedades `translate`/`rotate` → compuesto en GPU.
+- `tone` aplica un `filter` (aclara los verdes sobre oliva/negro).
 - `aria-hidden`, `pointer-events-none`. `prefers-reduced-motion`: lianas
-  quietas (`.vine-strip`, `.vine-sway { transform: none }`).
+  quietas (`.vine-strip { translate:0; rotate:0 }`).
 
 ## Layout
 
