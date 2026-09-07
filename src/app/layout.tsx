@@ -7,7 +7,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import { SearchOverlay } from "@/components/ui/SearchOverlay";
-import { FallingLeaves } from "@/components/ui/FallingLeaves";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 
 const serif = Fraunces({
   subsets: ["latin"],
@@ -65,7 +65,7 @@ export default function RootLayout({
           <style>{`[style*="opacity:0"],[style*="opacity: 0"]{opacity:1!important;transform:none!important}`}</style>
         </noscript>
         <CartProvider>
-          <FallingLeaves />
+          <EdgeVines />
           <Navbar />
           <main id="contenido">{children}</main>
           <Footer />

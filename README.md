@@ -39,7 +39,7 @@ src/
     products/             ProductCard, ProductDetail, CategoryFilter
     sections/             Hero, BrandPhilosophy, ProductCatalog, Benefits,
                           QuoteSection, Contact, Location
-    ui/                   Reveal, FallingLeaves (hojas cayendo de fondo),
+    ui/                   Reveal, EdgeVines (lianas de selva en las orillas),
                           ImagePlaceholder, Button, Field, PageHeader, Wordmark,
                           SearchOverlay, LegalPage
   lib/
@@ -92,20 +92,22 @@ La sección de **Pago** está marcada como punto de integración para
 - JSON-LD `Product` en las páginas de detalle
 - Jerarquía de encabezados y `alt` en imágenes
 
-## Hojas cayendo de fondo
+## Lianas de selva en las orillas
 
-`FallingLeaves` (montado una vez en `layout.tsx`) es una capa fija a la ventana
-con hojas pequeñas de color oliva/tierra que caen despacio con un balanceo
-suave, a lo largo de **toda la página**. Es CSS puro — solo se anima
-`transform` (`@keyframes leaf-fall` + `leaf-sway` en `globals.css`), sin
-JavaScript. Va por delante del contenido (`z-[5]`), detrás de la barra y los
-paneles, y `pointer-events-none`. Para ajustar cantidad/velocidad/opacidad se
-edita [`src/components/ui/FallingLeaves.tsx`](src/components/ui/FallingLeaves.tsx).
-`prefers-reduced-motion` desactiva la caída y deja las hojas quietas.
+`EdgeVines` (montado una vez en `layout.tsx`) son dos lianas fijas a la ventana,
+en las **orillas** izquierda y derecha, con flora pegada (hojas verde medio y
+claro, flores, zarcillos). Bajan despacio con un serpenteo horizontal y un
+vaivén más lento —como una serpiente colgando. La liana es un SVG data-URI que
+se repite verticalmente; solo se anima `transform` (`@keyframes vine-descend` +
+`vine-sway` en `globals.css`), sin JavaScript. Va por delante del contenido
+(`z-[5]`), detrás de la barra y los paneles, y `pointer-events-none`. Para
+ajustar ancho/velocidad/opacidad se edita
+[`src/components/ui/EdgeVines.tsx`](src/components/ui/EdgeVines.tsx).
+`prefers-reduced-motion` deja las lianas quietas.
 
 ## Accesibilidad y rendimiento
 
-- Respeta `prefers-reduced-motion` (Reveal, FallingLeaves, QuoteSection)
+- Respeta `prefers-reduced-motion` (Reveal, EdgeVines, QuoteSection)
 - `:focus-visible` coherente con la marca
 - Componentes server por defecto; cliente solo donde hay interacción
 - Animaciones con `transform`/`opacity`, `whileInView` con `once: true`

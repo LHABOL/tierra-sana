@@ -98,30 +98,42 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
-  /* hojas: sin caída, repartidas y quietas */
-  .leaf-fall {
-    transform: translate3d(0, var(--rest, 40vh), 0) !important;
+  /* lianas: sin descenso ni serpenteo, quietas */
+  .vine-strip {
+    transform: none !important;
+  }
+  .vine-sway {
+    transform: none !important;
   }
 }
 
-/* Hojas cayendo: la capa exterior baja a velocidad constante por toda la
-   sección; la interior aporta el balanceo lateral + giro. Solo `transform`
-   → compuesto en GPU, sin repintados. */
-@keyframes leaf-fall {
-  from {
-    transform: translate3d(0, -18vh, 0);
+/* Lianas de las orillas: la tira baja despacio (con un serpenteo horizontal
+   sutil durante la bajada) y el contenedor añade un vaivén más lento, como
+   una serpiente. Solo `transform` → compuesto en GPU. */
+@keyframes vine-descend {
+  0% {
+    transform: translate3d(0, 0, 0);
   }
-  to {
-    transform: translate3d(0, 118vh, 0);
-  }
-}
-@keyframes leaf-sway {
-  0%,
-  100% {
-    transform: translateX(var(--x1, -12px)) rotate(var(--r1, -20deg));
+  25% {
+    transform: translate3d(6px, calc(var(--tile, 440px) * 0.25), 0);
   }
   50% {
-    transform: translateX(var(--x2, 12px)) rotate(var(--r2, 20deg));
+    transform: translate3d(0, calc(var(--tile, 440px) * 0.5), 0);
+  }
+  75% {
+    transform: translate3d(-6px, calc(var(--tile, 440px) * 0.75), 0);
+  }
+  100% {
+    transform: translate3d(0, var(--tile, 440px), 0);
+  }
+}
+@keyframes vine-sway {
+  0%,
+  100% {
+    transform: translateX(-7px) rotate(-1.3deg);
+  }
+  50% {
+    transform: translateX(8px) rotate(1.5deg);
   }
 }
 

@@ -44,23 +44,27 @@ imperceptibles con Framer Motion:
 - `QuoteSection`: parallax de ±24px sobre el texto.
 - Hover botones: la flecha aparece y el `tracking` se abre ligeramente.
 
-### Hojas cayendo (`FallingLeaves`)
+### Lianas de las orillas (`EdgeVines`)
 
-Una **sola capa fija a la ventana** (`position: fixed`), montada una vez en
-`layout.tsx`, con ~26 hojas pequeñas (12–28 px) que caen despacio de arriba a
-abajo con un balanceo suave. Al estar fija, el efecto acompaña el scroll por
-**todo el largo de la página**.
+**Dos lianas fijas a la ventana** (`position: fixed`), montadas una vez en
+`layout.tsx`, una en cada **orilla** (izquierda y derecha). Al estar fijas, el
+efecto acompaña el scroll por **todo el largo de la página**; el resto del
+lienzo queda libre.
 
-- Colores oliva / salvia / tierra que se leen igual sobre marfil y sobre verde
-  profundo; opacidad 0.14–0.30 por hoja para no competir con el contenido.
-- Movimiento 100 % CSS: `@keyframes leaf-fall` (caída lineal, 20–42 s) en el
-  `<div>` exterior + `leaf-sway` (vaivén lateral + giro, 4–8 s) en el interior.
-  Solo `transform` → compuesto en GPU, sin JavaScript.
-- Reparto determinista (PRNG `mulberry32` sembrado) → sin desajustes de
-  hidratación. Va por delante del contenido (`z-[5]`) pero por debajo de la
-  barra (`z-40`) y de los paneles (`z-50`); `pointer-events-none`.
-- `prefers-reduced-motion`: sin caída — las hojas quedan repartidas y quietas
-  (regla `.leaf-fall { transform: translateY(var(--rest)) }`).
+- **Toque selvático**: cada liana es un SVG con dos tallos entrelazados + hojas
+  (verde medio `#8CA277` y verde claro `#B4C69B`), flores pequeñas y zarcillos.
+  Verde tenue que contrasta tanto con el marfil como con el verde profundo;
+  capa a `opacity: 0.5`.
+- **Movimiento como serpiente**, 100 % CSS (solo `transform`):
+  · `vine-descend` — la tira baja despacio (82–96 s por tramo) con un serpenteo
+    horizontal de ±6 px durante la bajada;
+  · `vine-sway` — el contenedor cuelga desde arriba y se mece más lento
+    (13–16 s, `transform-origin: top`).
+  El tramo de liana (`--tile` = 500 px) se repite en vertical → bucle sin salto.
+- Ancho de cada orilla `clamp(52px, 10vw, 150px)`. Va por delante del contenido
+  (`z-[5]`) pero por debajo de la barra (`z-40`) y los paneles (`z-50`);
+  `pointer-events-none`.
+- `prefers-reduced-motion`: lianas quietas, sin descenso ni serpenteo.
 
 ## Layout
 
