@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Reveal } from "@/components/ui/Reveal";
 import { site } from "@/lib/site";
 import { Field } from "@/components/ui/Field";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 
 export function Contact({ bare = false }: { bare?: boolean }) {
   const [sent, setSent] = useState(false);
@@ -14,7 +13,6 @@ export function Contact({ bare = false }: { bare?: boolean }) {
       id="contacto"
       className="relative isolate overflow-hidden py-24 md:py-32"
     >
-      <BotanicalBackdrop tone="light" density="normal" seed={13} />
       <div className="shell grid gap-16 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
           {bare ? (

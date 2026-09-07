@@ -1,6 +1,5 @@
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 
 export interface LegalSection {
   heading: string;
@@ -24,7 +23,6 @@ export function LegalPage({
     <>
       <PageHeader eyebrow={eyebrow} title={title} intro={intro} />
       <article className="relative isolate shell py-20 md:py-28">
-        <BotanicalBackdrop tone="light" density="normal" seed={title.length * 5 + 9} />
         <p className="text-xs uppercase tracking-[0.2em] text-stone">
           Última actualización: {updated}
         </p>

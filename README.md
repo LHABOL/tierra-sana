@@ -39,7 +39,7 @@ src/
     products/             ProductCard, ProductDetail, CategoryFilter
     sections/             Hero, BrandPhilosophy, ProductCatalog, Benefits,
                           QuoteSection, Contact, Location
-    ui/                   Reveal, BotanicalBackdrop (flores de fondo · templates),
+    ui/                   Reveal, FallingLeaves (hojas cayendo de fondo),
                           ImagePlaceholder, Button, Field, PageHeader, Wordmark,
                           SearchOverlay, LegalPage
   lib/
@@ -92,21 +92,20 @@ La sección de **Pago** está marcada como punto de integración para
 - JSON-LD `Product` en las páginas de detalle
 - Jerarquía de encabezados y `alt` en imágenes
 
-## Papel tapiz floral
+## Hojas cayendo de fondo
 
-`BotanicalBackdrop` pone un patrón de flores pequeñas de colores suaves detrás
-de **todas las secciones y páginas**, con un vaivén "temblado" muy lento (dos
-capas del patrón que se mecen en órbitas opuestas). Es CSS puro: el mosaico es
-un SVG data-URI y solo se anima `transform` (`@keyframes botanical-orbit-a/-b`
-en `globals.css`). Props: `tone` (`light`/`dark`, ajusta paleta y opacidad al
-fondo), `density` (`sparse`/`normal`/`lush`), `seed` (desfase por sección),
-`opacity`. La sección contenedora usa `relative isolate overflow-hidden`.
-Detalles en
-[`src/components/ui/BotanicalBackdrop.tsx`](src/components/ui/BotanicalBackdrop.tsx).
+`FallingLeaves` (montado una vez en `layout.tsx`) es una capa fija a la ventana
+con hojas pequeñas de color oliva/tierra que caen despacio con un balanceo
+suave, a lo largo de **toda la página**. Es CSS puro — solo se anima
+`transform` (`@keyframes leaf-fall` + `leaf-sway` en `globals.css`), sin
+JavaScript. Va por delante del contenido (`z-[5]`), detrás de la barra y los
+paneles, y `pointer-events-none`. Para ajustar cantidad/velocidad/opacidad se
+edita [`src/components/ui/FallingLeaves.tsx`](src/components/ui/FallingLeaves.tsx).
+`prefers-reduced-motion` desactiva la caída y deja las hojas quietas.
 
 ## Accesibilidad y rendimiento
 
-- Respeta `prefers-reduced-motion` (Reveal, BotanicalBackdrop, QuoteSection)
+- Respeta `prefers-reduced-motion` (Reveal, FallingLeaves, QuoteSection)
 - `:focus-visible` coherente con la marca
 - Componentes server por defecto; cliente solo donde hay interacción
 - Animaciones con `transform`/`opacity`, `whileInView` con `once: true`

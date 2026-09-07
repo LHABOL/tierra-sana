@@ -98,36 +98,30 @@
     transition-duration: 0.001ms !important;
     scroll-behavior: auto !important;
   }
+  /* hojas: sin caída, repartidas y quietas */
+  .leaf-fall {
+    transform: translate3d(0, var(--rest, 40vh), 0) !important;
+  }
 }
 
-/* Papel tapiz floral: dos capas sobredimensionadas se mecen muy lento en
-   órbitas opuestas → vaivén orgánico ("temblado"). Solo `transform` (translate)
+/* Hojas cayendo: la capa exterior baja a velocidad constante por toda la
+   sección; la interior aporta el balanceo lateral + giro. Solo `transform`
    → compuesto en GPU, sin repintados. */
-@keyframes botanical-orbit-a {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
+@keyframes leaf-fall {
+  from {
+    transform: translate3d(0, -18vh, 0);
   }
-  25% {
-    transform: translate3d(1.6%, -1.4%, 0);
-  }
-  50% {
-    transform: translate3d(-0.6%, 1.8%, 0);
-  }
-  75% {
-    transform: translate3d(-1.8%, -0.8%, 0);
+  to {
+    transform: translate3d(0, 118vh, 0);
   }
 }
-@keyframes botanical-orbit-b {
+@keyframes leaf-sway {
   0%,
   100% {
-    transform: translate3d(0, 0, 0);
+    transform: translateX(var(--x1, -12px)) rotate(var(--r1, -20deg));
   }
-  33% {
-    transform: translate3d(-1.5%, 1.2%, 0);
-  }
-  66% {
-    transform: translate3d(1.4%, 0.6%, 0);
+  50% {
+    transform: translateX(var(--x2, 12px)) rotate(var(--r2, 20deg));
   }
 }
 

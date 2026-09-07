@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { useRef } from "react";
 import { clsx } from "clsx";
 import { useReveal } from "@/hooks/useReveal";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 
 /**
  * Frase grande como pausa visual entre secciones.
@@ -37,11 +36,6 @@ export function QuoteSection({
       ref={ref}
       className={clsx("relative isolate overflow-hidden py-28 md:py-40", palette)}
     >
-      <BotanicalBackdrop
-        tone={tone === "ivory" ? "light" : "dark"}
-        density="normal"
-        seed={tone === "ink" ? 31 : tone === "olive" ? 37 : 41}
-      />
       <div className="shell" ref={quoteRef as never}>
         <motion.blockquote
           style={{ y }}

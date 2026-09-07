@@ -5,7 +5,6 @@ import { X } from "lucide-react";
 import { useCart } from "@/components/providers/CartProvider";
 import { QuantitySelector } from "@/components/cart/QuantitySelector";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 import { formatPrice } from "@/lib/format";
 import { site } from "@/lib/site";
 
@@ -23,7 +22,6 @@ export function CartView() {
   if (items.length === 0) {
     return (
       <div className="relative isolate shell py-32 text-center">
-        <BotanicalBackdrop tone="light" density="normal" seed={61} />
         <p className="eyebrow">Carrito</p>
         <h1 className="display mt-4">Tu carrito está vacío.</h1>
         <p className="mx-auto mt-6 max-w-md text-base text-stone">
@@ -42,7 +40,6 @@ export function CartView() {
 
   return (
     <div className="relative isolate shell py-24 md:py-32">
-      <BotanicalBackdrop tone="light" density="normal" seed={67} />
       <p className="eyebrow">Carrito</p>
       <h1 className="display mt-4">Tu selección.</h1>
 

@@ -2,14 +2,12 @@ import Link from "next/link";
 import { site } from "@/lib/site";
 import { categories } from "@/lib/categories";
 import { Wordmark } from "@/components/ui/Wordmark";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 
 export function Footer() {
   const year = new Date().getFullYear();
 
   return (
     <footer className="relative isolate overflow-hidden bg-ink text-ivory">
-      <BotanicalBackdrop tone="dark" density="normal" seed={11} />
       <div className="shell relative grid gap-12 py-20 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div className="max-w-xs">
           <Wordmark tone="light" />

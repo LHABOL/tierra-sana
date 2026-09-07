@@ -5,7 +5,6 @@ import { getProduct, products, getByCategory } from "@/lib/products";
 import { ProductDetail } from "@/components/products/ProductDetail";
 import { ProductCard } from "@/components/products/ProductCard";
 import { Reveal } from "@/components/ui/Reveal";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 import { site } from "@/lib/site";
 
 export function generateStaticParams() {
@@ -75,7 +74,6 @@ export default function ProductoPage({
 
       {suggestions.length > 0 && (
         <section className="relative isolate overflow-hidden py-24">
-          <BotanicalBackdrop tone="light" density="normal" seed={53} />
           <div className="shell">
           <Reveal>
             <div className="flex items-end justify-between border-t border-olive/10 pt-12">

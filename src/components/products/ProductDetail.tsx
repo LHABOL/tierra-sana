@@ -8,7 +8,6 @@ import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { QuantitySelector } from "@/components/cart/QuantitySelector";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { Reveal } from "@/components/ui/Reveal";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 import { categoryName } from "@/lib/categories";
 import { formatPrice } from "@/lib/format";
 
@@ -19,11 +18,6 @@ export function ProductDetail({ product }: { product: Product }) {
 
   return (
     <article className="relative isolate shell pt-32">
-      <BotanicalBackdrop
-        tone="light"
-        density="normal"
-        seed={product.slug.length * 7 + 3}
-      />
       <nav className="text-[0.68rem] uppercase tracking-[0.2em] text-stone">
         <Link href="/catalogo" className="hover:text-olive">
           Catálogo

@@ -1,4 +1,3 @@
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 
 export function PageHeader({
   eyebrow,
@@ -11,7 +10,6 @@ export function PageHeader({
 }) {
   return (
     <header className="relative isolate overflow-hidden bg-olive pb-16 pt-36 text-ivory md:pb-24 md:pt-44">
-      <BotanicalBackdrop tone="dark" density="normal" seed={2} />
       <div className="shell relative">
         <p className="eyebrow !text-ivory/60">{eyebrow}</p>
         <h1 className="display mt-4">{title}</h1>

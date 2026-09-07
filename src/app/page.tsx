@@ -10,7 +10,6 @@ import { Contact } from "@/components/sections/Contact";
 import { Location } from "@/components/sections/Location";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 import { getFeatured } from "@/lib/products";
 import { categories } from "@/lib/categories";
 import { site } from "@/lib/site";
@@ -42,7 +41,6 @@ export default function HomePage() {
       </Suspense>
 
       <section className="relative isolate overflow-hidden pb-24">
-        <BotanicalBackdrop tone="light" density="normal" seed={29} />
         <div className="shell">
         <Reveal className="border-t border-olive/10 pt-12">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -84,7 +82,6 @@ export default function HomePage() {
       <Location />
 
       <section className="relative isolate overflow-hidden bg-sage/40 py-24">
-        <BotanicalBackdrop tone="light" density="normal" seed={43} />
         <div className="shell text-center">
           <Reveal>
             <p className="eyebrow">{site.name}</p>

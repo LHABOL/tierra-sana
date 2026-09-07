@@ -43,34 +43,24 @@ imperceptibles con Framer Motion:
 - Hero: máscara de líneas que suben + fade escalonado.
 - `QuoteSection`: parallax de ±24px sobre el texto.
 - Hover botones: la flecha aparece y el `tracking` se abre ligeramente.
-### Papel tapiz floral (`BotanicalBackdrop`)
 
-Está presente en **todas las secciones y páginas** del sitio: un patrón SVG de
-flores pequeñas de colores suaves que se repite (mosaico de 270–460 px según
-`density`), en opacidad baja (0.26 sobre marfil / 0.30 sobre oliva) para que
-acompañe sin competir con el contenido.
+### Hojas cayendo (`FallingLeaves`)
 
-- Colores que armonizan con la identidad: verde salvia, rosa polvo, ocre,
-  terracota, azul apagado (versiones luminosas sobre fondos oscuros).
-- Movimiento "temblado": **dos capas** sobredimensionadas del patrón se mecen
-  muy lento en órbitas opuestas (`@keyframes botanical-orbit-a` / `-b`,
-  translate ≤ 1.8 %, 42 s). Solo `transform` → compuesto en GPU, sin JS.
-- El mosaico se genera como data-URI a partir de la paleta, así que no hay
-  ningún nodo por flor (una capa, dos `<div>` de fondo).
+Una **sola capa fija a la ventana** (`position: fixed`), montada una vez en
+`layout.tsx`, con ~26 hojas pequeñas (12–28 px) que caen despacio de arriba a
+abajo con un balanceo suave. Al estar fija, el efecto acompaña el scroll por
+**todo el largo de la página**.
 
-Props:
-
-| prop | valores | efecto |
-|------|---------|--------|
-| `tone` | `"light"` / `"dark"` | paleta y opacidad según el fondo |
-| `density` | `"sparse"` · `"normal"` · `"lush"` | tamaño del mosaico (menos = más flores) |
-| `seed` | número | desfase de fase por sección (sin desajuste de hidratación) |
-| `opacity` | 0–1 | multiplicador (p. ej. `0.7` sobre el catálogo) |
-
-La sección contenedora lleva `relative isolate overflow-hidden` y la capa
-`-z-[1]`, para quedar por encima del fondo pero detrás del contenido.
-
-Todo respeta `prefers-reduced-motion` (la regla global congela las animaciones).
+- Colores oliva / salvia / tierra que se leen igual sobre marfil y sobre verde
+  profundo; opacidad 0.14–0.30 por hoja para no competir con el contenido.
+- Movimiento 100 % CSS: `@keyframes leaf-fall` (caída lineal, 20–42 s) en el
+  `<div>` exterior + `leaf-sway` (vaivén lateral + giro, 4–8 s) en el interior.
+  Solo `transform` → compuesto en GPU, sin JavaScript.
+- Reparto determinista (PRNG `mulberry32` sembrado) → sin desajustes de
+  hidratación. Va por delante del contenido (`z-[5]`) pero por debajo de la
+  barra (`z-40`) y de los paneles (`z-50`); `pointer-events-none`.
+- `prefers-reduced-motion`: sin caída — las hojas quedan repartidas y quietas
+  (regla `.leaf-fall { transform: translateY(var(--rest)) }`).
 
 ## Layout
 

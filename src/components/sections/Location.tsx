@@ -1,7 +1,6 @@
 import { MapPin, Clock, Phone } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
 import { site } from "@/lib/site";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 
 export function Location({ bare = false }: { bare?: boolean }) {
   const { location, contact } = site;
@@ -11,7 +10,6 @@ export function Location({ bare = false }: { bare?: boolean }) {
       id="ubicacion"
       className="relative isolate overflow-hidden py-24 md:py-32"
     >
-      <BotanicalBackdrop tone="light" density="normal" seed={17} />
       <div className="shell grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
         <Reveal>
           {bare ? (

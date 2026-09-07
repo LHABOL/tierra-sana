@@ -7,7 +7,6 @@ import type { Product } from "@/lib/types";
 import { ProductCard } from "@/components/products/ProductCard";
 import { CategoryFilter } from "@/components/products/CategoryFilter";
 import { Reveal } from "@/components/ui/Reveal";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 
 interface Props {
   /** Lista base; por defecto todo el catálogo */
@@ -53,7 +52,6 @@ export function ProductCatalog({
 
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
-      <BotanicalBackdrop tone="light" density="normal" seed={23} opacity={0.7} />
       <div className="shell">
         {(eyebrow || title || intro) && (
           <Reveal className="max-w-2xl">

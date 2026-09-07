@@ -1,6 +1,5 @@
 import { Leaf, Sparkles, Recycle, Home } from "lucide-react";
 import { Reveal } from "@/components/ui/Reveal";
-import { BotanicalBackdrop } from "@/components/ui/BotanicalBackdrop";
 
 const benefits = [
   {
@@ -28,7 +27,6 @@ const benefits = [
 export function Benefits() {
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
-      <BotanicalBackdrop tone="light" density="normal" seed={19} />
       <div className="shell">
       <Reveal className="max-w-2xl">
         <p className="eyebrow">Por qué Tierra Sana</p>
