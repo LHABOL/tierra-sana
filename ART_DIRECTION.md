@@ -56,7 +56,10 @@ contenido (`-z-[1]`) y **se desplaza con el scroll**.
   está espejado → se repite sin costura a lo ancho.
 - **4 bordes** (`Band` top/bottom/left/right): la lámina horizontal se rota 90°
   para los lados y se voltea para el borde inferior; grosor
-  `clamp(64px, 13vw, 188px)`.
+  `clamp(96px, 15vw, 210px)`.
+- **Sin línea de marco**: cada banda lleva `mask-image` en degradado
+  (`FADE_H` / `FADE_V`) que la funde progresivamente hacia el centro → las
+  lianas se disuelven en el fondo, no se ve el borde recto del recorte.
 - **Movimiento como serpiente**, 100 % CSS: `@keyframes vine-serpent` (vaivén
   lateral ±20 px + giro ≤ 0.8°) con `animation-direction: alternate` → **va y
   vuelve, nunca salta**. Dos capas desfasadas rompen la simetría del espejo.

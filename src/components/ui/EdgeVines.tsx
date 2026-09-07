@@ -10,6 +10,9 @@ import type { CSSProperties } from "react";
  * - 4 bandas (`Band`): la lámina horizontal se rota 90° para los lados y se
  *   voltea para el borde inferior. Dos capas desfasadas media baldosa disimulan
  *   la costura de la repetición y dan profundidad.
+ * - **Sin línea de marco**: cada banda lleva una máscara en degradado que la
+ *   funde progresivamente hacia el centro → las lianas se disuelven en el fondo,
+ *   no se ve el borde recto del recorte.
  * - Movimiento tipo serpiente, 100% CSS: `@keyframes vine-serpent` (vaivén
  *   lateral + giro ≤ 0.8°) con `animation-direction: alternate` → va y vuelve,
  *   nunca “salta”. Propiedades `translate`/`rotate` → compuesto en GPU.
@@ -19,8 +22,14 @@ import type { CSSProperties } from "react";
  * - `prefers-reduced-motion` deja las lianas quietas.
  */
 
-const THICK = "clamp(46px, 8vw, 116px)";
+const THICK = "clamp(96px, 15vw, 210px)";
 const IMG = 'url("/vines/vine-strip.webp")';
+
+// degradado que funde la banda hacia el centro (denso en la orilla → nada)
+const FADE_H =
+  "linear-gradient(to bottom, #000 0%, #000 5%, rgba(0,0,0,0.5) 42%, rgba(0,0,0,0.15) 72%, transparent 100%)";
+const FADE_V =
+  "linear-gradient(to right, #000 0%, #000 5%, rgba(0,0,0,0.5) 42%, rgba(0,0,0,0.15) 72%, transparent 100%)";
 
 type Tone = "light" | "dark";
 type Edge = "top" | "bottom" | "left" | "right";
@@ -28,6 +37,7 @@ type Edge = "top" | "bottom" | "left" | "right";
 function Band({ edge, tone }: { edge: Edge; tone: Tone }) {
   const horizontal = edge === "top" || edge === "bottom";
 
+  const fade = horizontal ? FADE_H : FADE_V;
   const clip: CSSProperties = {
     position: "absolute",
     overflow: "hidden",
@@ -40,6 +50,8 @@ function Band({ edge, tone }: { edge: Edge; tone: Tone }) {
         : edge === "right"
           ? "scaleX(-1)"
           : undefined,
+    WebkitMaskImage: fade,
+    maskImage: fade,
   };
 
   const rot: CSSProperties = horizontal
@@ -69,8 +81,8 @@ function Band({ edge, tone }: { edge: Edge; tone: Tone }) {
     backgroundPositionX: `${posX}px`,
     filter:
       tone === "dark"
-        ? "brightness(1.18) saturate(1.08)"
-        : "saturate(1.04) contrast(1.05)",
+        ? "brightness(1.06) saturate(1.04)"
+        : "saturate(1.02) contrast(1.03)",
     willChange: "transform",
     animation: `vine-serpent ${dur}s ease-in-out ${delay}s infinite alternate`,
   });
@@ -96,7 +108,7 @@ export function EdgeVines({
     <div
       aria-hidden
       className="pointer-events-none absolute inset-0 -z-[1] overflow-hidden"
-      style={{ opacity: opacity ?? (tone === "dark" ? 0.42 : 0.46) }}
+      style={{ opacity: opacity ?? (tone === "dark" ? 0.5 : 0.52) }}
     >
       <Band edge="top" tone={tone} />
       <Band edge="bottom" tone={tone} />

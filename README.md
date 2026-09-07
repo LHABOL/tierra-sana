@@ -99,9 +99,11 @@ fotográficas en los **4 bordes**, **en el fondo**: detrás del contenido
 (`-z-[1]`) y se desplazan con el scroll. La liana es un fotograma del video de
 referencia recortado y sin fondo (`public/vines/vine-strip.webp`, ~82 KB; el
 `.png` queda de respaldo). El mosaico está espejado → se repite sin costura.
-Movimiento tipo serpiente 100% CSS: `@keyframes vine-serpent` con
-`animation-direction: alternate` (va y vuelve, nunca “salta”); dos capas
-desfasadas rompen la simetría. Se ajusta en
+Cada banda lleva una `mask-image` en degradado que la funde hacia el centro
+→ las lianas se disuelven en el fondo, sin línea de marco. Movimiento tipo
+serpiente 100% CSS: `@keyframes vine-serpent` con `animation-direction:
+alternate` (va y vuelve, nunca “salta”); dos capas desfasadas rompen la
+repetición. Se ajusta en
 [`src/components/ui/EdgeVines.tsx`](src/components/ui/EdgeVines.tsx). La sección
 contenedora necesita `relative isolate overflow-hidden`.
 `prefers-reduced-motion` deja las lianas quietas.
