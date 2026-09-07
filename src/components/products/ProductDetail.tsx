@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { Product } from "@/lib/types";
@@ -18,6 +19,7 @@ export function ProductDetail({ product }: { product: Product }) {
 
   return (
     <article className="relative isolate shell pt-32">
+      <EdgeVines tone="light" />
       <nav className="text-[0.68rem] uppercase tracking-[0.2em] text-stone">
         <Link href="/catalogo" className="hover:text-olive">
           Catálogo

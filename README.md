@@ -94,15 +94,15 @@ La sección de **Pago** está marcada como punto de integración para
 
 ## Lianas de selva en las orillas
 
-`EdgeVines` (montado una vez en `layout.tsx`) son dos lianas fijas a la ventana,
-en las **orillas** izquierda y derecha, con flora pegada (hojas verde medio y
-claro, flores, zarcillos). Bajan despacio con un serpenteo horizontal y un
-vaivén más lento —como una serpiente colgando. La liana es un SVG data-URI que
-se repite verticalmente; solo se anima `transform` (`@keyframes vine-descend` +
-`vine-sway` en `globals.css`), sin JavaScript. Va por delante del contenido
-(`z-[5]`), detrás de la barra y los paneles, y `pointer-events-none`. Para
-ajustar ancho/velocidad/opacidad se edita
-[`src/components/ui/EdgeVines.tsx`](src/components/ui/EdgeVines.tsx).
+`EdgeVines` se coloca **por sección** (`<EdgeVines tone="light|dark" />`) e va
+**en el fondo**: detrás del contenido (`-z-[1]`, sobre el color de la sección) y
+se desplaza con el scroll. Cada orilla es una cortina densa de tallos sinuosos
+con hojas, flores y zarcillos; `tone` fija los verdes para que contrasten con
+marfil o con oliva. Bajan despacio con un serpenteo horizontal y un vaivén más
+lento —como una serpiente. Solo se anima `transform` (`@keyframes vine-descend`
++ `vine-sway` en `globals.css`), sin JavaScript. Para ajustarlo se edita
+[`src/components/ui/EdgeVines.tsx`](src/components/ui/EdgeVines.tsx). La sección
+contenedora necesita `relative isolate overflow-hidden`.
 `prefers-reduced-motion` deja las lianas quietas.
 
 ## Accesibilidad y rendimiento

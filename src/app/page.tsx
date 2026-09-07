@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
@@ -41,6 +42,7 @@ export default function HomePage() {
       </Suspense>
 
       <section className="relative isolate overflow-hidden pb-24">
+        <EdgeVines tone="light" />
         <div className="shell">
         <Reveal className="border-t border-olive/10 pt-12">
           <div className="flex flex-wrap items-end justify-between gap-6">
@@ -82,6 +84,7 @@ export default function HomePage() {
       <Location />
 
       <section className="relative isolate overflow-hidden bg-sage/40 py-24">
+        <EdgeVines tone="light" />
         <div className="shell text-center">
           <Reveal>
             <p className="eyebrow">{site.name}</p>

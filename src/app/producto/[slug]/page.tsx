@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getProduct, products, getByCategory } from "@/lib/products";
@@ -74,6 +75,7 @@ export default function ProductoPage({
 
       {suggestions.length > 0 && (
         <section className="relative isolate overflow-hidden py-24">
+          <EdgeVines tone="light" />
           <div className="shell">
           <Reveal>
             <div className="flex items-end justify-between border-t border-olive/10 pt-12">

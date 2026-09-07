@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Reveal } from "@/components/ui/Reveal";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
@@ -41,6 +42,7 @@ export default function NosotrosPage() {
       />
 
       <section className="relative isolate overflow-hidden py-24 md:py-32">
+        <EdgeVines tone="light" />
         <div className="shell">
         <div className="grid gap-16 lg:grid-cols-2">
           <Reveal>
@@ -91,6 +93,7 @@ export default function NosotrosPage() {
       <Benefits />
 
       <section className="relative isolate overflow-hidden bg-sage/40 py-20">
+        <EdgeVines tone="light" />
         <div className="shell flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
           <p className="max-w-md font-serif text-2xl">
             Conoce la selección completa de productos.

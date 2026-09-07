@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import Link from "next/link";
 import { useCart } from "@/components/providers/CartProvider";
 import { Field } from "@/components/ui/Field";
@@ -36,6 +37,7 @@ export function CheckoutForm() {
   if (placed) {
     return (
       <div className="relative isolate shell py-32 text-center">
+        <EdgeVines tone="light" />
         <p className="eyebrow">Pedido recibido</p>
         <h1 className="display mt-4">Gracias por tu compra.</h1>
         <p className="mx-auto mt-6 max-w-md text-base text-stone">
@@ -56,6 +58,7 @@ export function CheckoutForm() {
   if (items.length === 0) {
     return (
       <div className="relative isolate shell py-32 text-center">
+        <EdgeVines tone="light" />
         <p className="eyebrow">Checkout</p>
         <h1 className="display mt-4">No hay nada que pagar.</h1>
         <p className="mx-auto mt-6 max-w-md text-base text-stone">
@@ -73,6 +76,7 @@ export function CheckoutForm() {
 
   return (
     <div className="relative isolate shell py-24 md:py-32">
+      <EdgeVines tone="light" />
       <p className="eyebrow">Checkout</p>
       <h1 className="display mt-4">Finalizar compra.</h1>
 

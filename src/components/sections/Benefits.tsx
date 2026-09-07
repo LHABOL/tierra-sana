@@ -1,4 +1,5 @@
 import { Leaf, Sparkles, Recycle, Home } from "lucide-react";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import { Reveal } from "@/components/ui/Reveal";
 
 const benefits = [
@@ -27,6 +28,7 @@ const benefits = [
 export function Benefits() {
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
+      <EdgeVines tone="light" />
       <div className="shell">
       <Reveal className="max-w-2xl">
         <p className="eyebrow">Por qué Tierra Sana</p>

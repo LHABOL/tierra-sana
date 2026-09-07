@@ -1,3 +1,5 @@
+import { EdgeVines } from "@/components/ui/EdgeVines";
+
 
 export function PageHeader({
   eyebrow,
@@ -10,6 +12,7 @@ export function PageHeader({
 }) {
   return (
     <header className="relative isolate overflow-hidden bg-olive pb-16 pt-36 text-ivory md:pb-24 md:pt-44">
+      <EdgeVines tone="dark" />
       <div className="shell relative">
         <p className="eyebrow !text-ivory/60">{eyebrow}</p>
         <h1 className="display mt-4">{title}</h1>

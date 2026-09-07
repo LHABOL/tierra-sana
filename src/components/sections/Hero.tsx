@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ButtonLink } from "@/components/ui/Button";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import { site } from "@/lib/site";
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -11,7 +12,7 @@ export function Hero() {
 
   return (
     <section className="grain relative isolate flex min-h-[100svh] items-center overflow-hidden bg-olive text-ivory">
-
+      <EdgeVines tone="dark" />
       <div className="shell relative grid w-full items-center gap-16 py-32 lg:grid-cols-[1.05fr_0.95fr]">
         <div>
           <motion.p

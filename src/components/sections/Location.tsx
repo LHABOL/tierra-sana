@@ -1,4 +1,5 @@
 import { MapPin, Clock, Phone } from "lucide-react";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import { Reveal } from "@/components/ui/Reveal";
 import { site } from "@/lib/site";
 
@@ -10,6 +11,7 @@ export function Location({ bare = false }: { bare?: boolean }) {
       id="ubicacion"
       className="relative isolate overflow-hidden py-24 md:py-32"
     >
+      <EdgeVines tone="light" />
       <div className="shell grid gap-14 lg:grid-cols-[0.85fr_1.15fr]">
         <Reveal>
           {bare ? (

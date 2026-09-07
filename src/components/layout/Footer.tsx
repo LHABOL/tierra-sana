@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import { site } from "@/lib/site";
 import { categories } from "@/lib/categories";
 import { Wordmark } from "@/components/ui/Wordmark";
@@ -8,6 +9,7 @@ export function Footer() {
 
   return (
     <footer className="relative isolate overflow-hidden bg-ink text-ivory">
+      <EdgeVines tone="dark" />
       <div className="shell relative grid gap-12 py-20 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div className="max-w-xs">
           <Wordmark tone="light" />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { products as allProducts } from "@/lib/products";
 import type { Product } from "@/lib/types";
@@ -52,6 +53,7 @@ export function ProductCatalog({
 
   return (
     <section className="relative isolate overflow-hidden py-24 md:py-32">
+      <EdgeVines tone="light" />
       <div className="shell">
         {(eyebrow || title || intro) && (
           <Reveal className="max-w-2xl">

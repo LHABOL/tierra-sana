@@ -44,27 +44,25 @@ imperceptibles con Framer Motion:
 - `QuoteSection`: parallax de ±24px sobre el texto.
 - Hover botones: la flecha aparece y el `tracking` se abre ligeramente.
 
-### Lianas de las orillas (`EdgeVines`)
+### Cortina de lianas en las orillas (`EdgeVines`)
 
-**Dos lianas fijas a la ventana** (`position: fixed`), montadas una vez en
-`layout.tsx`, una en cada **orilla** (izquierda y derecha). Al estar fijas, el
-efecto acompaña el scroll por **todo el largo de la página**; el resto del
-lienzo queda libre.
+Se coloca **por sección** (`<EdgeVines tone="light|dark" />` como primer hijo de
+un contenedor `relative isolate overflow-hidden`), **integrada en el fondo**:
+va detrás del contenido (`-z-[1]`, encima del color de la sección pero debajo
+del texto) y **se desplaza con el scroll** — no es fija.
 
-- **Toque selvático**: cada liana es un SVG con dos tallos entrelazados + hojas
-  (verde medio `#8CA277` y verde claro `#B4C69B`), flores pequeñas y zarcillos.
-  Verde tenue que contrasta tanto con el marfil como con el verde profundo;
-  capa a `opacity: 0.5`.
+- **Toque selvático denso**: cada orilla es una cortina de 4 tallos sinuosos
+  juntos, con hojas (3 verdes), flores y zarcillos. `tone` fija los verdes:
+  oscuros sobre marfil, claros sobre oliva/negro → contraste en ambos fondos.
+  Ancho de orilla `clamp(84px, 15vw, 210px)`.
 - **Movimiento como serpiente**, 100 % CSS (solo `transform`):
-  · `vine-descend` — la tira baja despacio (82–96 s por tramo) con un serpenteo
-    horizontal de ±6 px durante la bajada;
-  · `vine-sway` — el contenedor cuelga desde arriba y se mece más lento
-    (13–16 s, `transform-origin: top`).
-  El tramo de liana (`--tile` = 500 px) se repite en vertical → bucle sin salto.
-- Ancho de cada orilla `clamp(52px, 10vw, 150px)`. Va por delante del contenido
-  (`z-[5]`) pero por debajo de la barra (`z-40`) y los paneles (`z-50`);
-  `pointer-events-none`.
-- `prefers-reduced-motion`: lianas quietas, sin descenso ni serpenteo.
+  · `vine-descend` — la tira baja despacio (90–108 s) con un serpenteo
+    horizontal de ±6 px;
+  · `vine-sway` — el conjunto cuelga desde arriba y se mece más lento
+    (14–17 s, `transform-origin: top`).
+  El tramo (`--tile` = 460 px) se repite en vertical → bucle sin salto.
+- `aria-hidden`, `pointer-events-none`. `prefers-reduced-motion`: lianas
+  quietas (`.vine-strip`, `.vine-sway { transform: none }`).
 
 ## Layout
 

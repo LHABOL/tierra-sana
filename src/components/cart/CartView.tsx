@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import { X } from "lucide-react";
 import { useCart } from "@/components/providers/CartProvider";
 import { QuantitySelector } from "@/components/cart/QuantitySelector";
@@ -22,6 +23,7 @@ export function CartView() {
   if (items.length === 0) {
     return (
       <div className="relative isolate shell py-32 text-center">
+        <EdgeVines tone="light" />
         <p className="eyebrow">Carrito</p>
         <h1 className="display mt-4">Tu carrito está vacío.</h1>
         <p className="mx-auto mt-6 max-w-md text-base text-stone">
@@ -40,6 +42,7 @@ export function CartView() {
 
   return (
     <div className="relative isolate shell py-24 md:py-32">
+      <EdgeVines tone="light" />
       <p className="eyebrow">Carrito</p>
       <h1 className="display mt-4">Tu selección.</h1>
 

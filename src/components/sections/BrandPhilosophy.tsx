@@ -1,10 +1,12 @@
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 
 export function BrandPhilosophy() {
   return (
     <section className="relative isolate overflow-hidden bg-ivory py-24 md:py-36">
+      <EdgeVines tone="light" />
       <div className="shell relative grid items-center gap-16 lg:grid-cols-2">
         <Reveal>
           <div className="max-w-lg">

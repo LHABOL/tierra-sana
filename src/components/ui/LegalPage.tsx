@@ -1,4 +1,5 @@
 import { PageHeader } from "@/components/ui/PageHeader";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import { Reveal } from "@/components/ui/Reveal";
 
 export interface LegalSection {
@@ -23,6 +24,7 @@ export function LegalPage({
     <>
       <PageHeader eyebrow={eyebrow} title={title} intro={intro} />
       <article className="relative isolate shell py-20 md:py-28">
+        <EdgeVines tone="light" />
         <p className="text-xs uppercase tracking-[0.2em] text-stone">
           Última actualización: {updated}
         </p>

@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import { EdgeVines } from "@/components/ui/EdgeVines";
 import { useRef } from "react";
 import { clsx } from "clsx";
 import { useReveal } from "@/hooks/useReveal";
@@ -36,6 +37,7 @@ export function QuoteSection({
       ref={ref}
       className={clsx("relative isolate overflow-hidden py-28 md:py-40", palette)}
     >
+      <EdgeVines tone={tone === "ivory" ? "light" : "dark"} />
       <div className="shell" ref={quoteRef as never}>
         <motion.blockquote
           style={{ y }}
