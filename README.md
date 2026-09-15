@@ -112,12 +112,24 @@ contenedora necesita `relative isolate overflow-hidden`.
 
 ## Logotipo
 
-`Wordmark` (navbar/footer) y `LogoMark` (el ícono solo, reutilizado como
-acento decorativo) viven en
-[`src/components/ui/Wordmark.tsx`](src/components/ui/Wordmark.tsx): un brote
-de tres hojas dibujado en SVG, sin subtítulo, que hereda el color del fondo
-(`tone="light|dark"`) — no depende de ninguna imagen, por lo que no hay fondo
-blanco que eliminar al colocarlo sobre el sitio.
+`Wordmark` (navbar/footer) usa el **sello oficial real** de la marca:
+`public/imagenes/logo-tierra-sana.webp` (+ `.png` de respaldo), recortado del
+archivo que entregó el cliente (`public/imagenes/Logo Tierra sana.jpeg`) —
+se le quitó el subtítulo ("Cosméticos · Higiene · Limpieza natural") y el
+fondo blanco de alrededor (queda transparente). El sello conserva su propio
+verde, por lo que se muestra un poco más alto que la barra de navegación
+para que "TIERRA SANA" siga siendo legible. `LogoMark` (el ícono de tres
+hojas en SVG, sin el sello) vive en el mismo archivo
+([`src/components/ui/Wordmark.tsx`](src/components/ui/Wordmark.tsx)) y se
+usa como acento decorativo pequeño en `BrandPhilosophy` y en el CTA final de
+inicio.
+
+Para volver a generar el recorte a partir del JPEG original (por ejemplo si
+llega una versión con más resolución), el flujo con `ffmpeg` fue: recortar al
+óvalo del sello, pintar la franja del subtítulo con el verde del sello
+(`~#6B8973`) y usar el canal azul (`b(X,Y)`) para construir el canal alfa —
+separa mejor el blanco puro del crema de las hojas que un `colorkey` normal,
+que confundía ambos colores.
 
 ## Accesibilidad y rendimiento
 

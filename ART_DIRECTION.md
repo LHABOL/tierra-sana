@@ -74,11 +74,20 @@ contenido (`-z-[1]`) y **se desplaza con el scroll**.
 
 ## Logotipo (`Wordmark` / `LogoMark`)
 
-Brote de tres hojas (hoja central alta + dos laterales) dibujado en SVG puro
-— sin imagen de trazado, así que no hay fondo blanco que recortar y se
-integra sobre cualquier fondo (claro u oscuro) heredando `currentColor` según
-`tone`. Sin subtítulo/tagline bajo el nombre. Se usa en `Navbar`, `Footer` y
-como acento decorativo en `BrandPhilosophy` y en el CTA final de inicio.
+`Wordmark` usa el **sello oficial real** de la marca
+(`public/imagenes/logo-tierra-sana.webp`, recortado del archivo original del
+cliente): el óvalo verde con el brote de tres hojas y "TIERRA SANA", **sin**
+el subtítulo ("Cosméticos · Higiene · Limpieza natural") y **sin** el blanco
+de alrededor — se le quitó el fondo digitalmente para que quede transparente
+e integrado sobre cualquier color. El sello tiene su propio verde fijo (no
+cambia con `tone`), así que se muestra más alto que la barra de navegación
+(`h-[92px]` vs. los 68px de la barra) para que el texto siga siendo legible;
+se alinea al **tope** de su contenedor (`self-start`), no al centro, para no
+recortarse contra el borde superior de la página. Se usa en `Navbar` y
+`Footer`. `LogoMark` (el brote de tres hojas en SVG puro, sin el sello) sigue
+existiendo como acento decorativo pequeño en `BrandPhilosophy` y en el CTA
+final de inicio, donde un ícono vectorial es más práctico que el sello
+completo.
 
 ## Layout
 

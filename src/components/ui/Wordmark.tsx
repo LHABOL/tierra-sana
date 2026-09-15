@@ -1,16 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 import { clsx } from "clsx";
 import { site } from "@/lib/site";
 
 /**
- * Logotipo de marca: brote de tres hojas (como en el sello oficial) + nombre
- * en serif. Vectorial → sin fondo blanco que recortar, se integra sobre
- * cualquier fondo (oscuro en el hero, claro en el resto del sitio).
+ * Logotipo oficial: el sello real de la marca (recortado de
+ * `/public/imagenes/logo-tierra-sana.webp`), sin el subtítulo y con el
+ * blanco de alrededor eliminado (fondo transparente) — solo queda el sello
+ * verde con el brote de tres hojas y "TIERRA SANA". El sello mantiene su
+ * propio verde fijo (no cambia con `tone`); por eso se deja más alto que la
+ * barra de navegación para que el texto siga siendo legible.
  */
 export function Wordmark({
-  tone = "dark",
   className,
 }: {
+  /** Se acepta por compatibilidad con los llamados existentes; el sello
+   * real tiene su propio verde fijo y no cambia de color. */
   tone?: "dark" | "light";
   className?: string;
 }) {
@@ -19,15 +24,18 @@ export function Wordmark({
       href="/"
       aria-label={`${site.name} — inicio`}
       className={clsx(
-        "inline-flex items-center gap-2.5 transition-opacity duration-300 hover:opacity-70",
-        tone === "light" ? "text-ivory" : "text-ink",
+        "inline-flex items-center self-start pt-1.5 transition-opacity duration-300 hover:opacity-80",
         className,
       )}
     >
-      <LogoMark className="h-6 w-6" />
-      <span className="whitespace-nowrap font-serif text-lg tracking-tight">
-        {site.name}
-      </span>
+      <Image
+        src="/imagenes/logo-tierra-sana.webp"
+        alt={site.name}
+        width={700}
+        height={569}
+        priority
+        className="h-[92px] w-auto object-contain"
+      />
     </Link>
   );
 }
