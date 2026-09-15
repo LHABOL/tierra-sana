@@ -92,7 +92,7 @@ La sección de **Pago** está marcada como punto de integración para
 - JSON-LD `Product` en las páginas de detalle
 - Jerarquía de encabezados y `alt` en imágenes
 
-## Marco de lianas reales
+## Marco de selva (lianas + hojas de esquina)
 
 `EdgeVines` (`<EdgeVines tone="light|dark" />`, por sección) dibuja lianas
 fotográficas en los **4 bordes**, **en el fondo**: detrás del contenido
@@ -100,13 +100,24 @@ fotográficas en los **4 bordes**, **en el fondo**: detrás del contenido
 referencia recortado y sin fondo (`public/vines/vine-strip.webp`, ~82 KB; el
 `.png` queda de respaldo). El mosaico está espejado → se repite sin costura.
 Cada banda lleva una `mask-image` en degradado que la funde hacia el centro
-→ las lianas se disuelven en el fondo, sin línea de marco. Movimiento tipo
-serpiente 100% CSS: `@keyframes vine-serpent` con `animation-direction:
-alternate` (va y vuelve, nunca “salta”); dos capas desfasadas rompen la
+→ las lianas se disuelven en el fondo, sin línea de marco. Además, cada
+esquina suma un par de hojas grandes en SVG (`CornerLeaf`) para un carácter
+de selva más denso. Movimiento tipo serpiente 100% CSS para las lianas
+(`@keyframes vine-serpent`, va y vuelve, nunca "salta") y un vaivén propio muy
+tenue para las hojas (`@keyframes leaf-sway`); dos capas desfasadas rompen la
 repetición. Se ajusta en
 [`src/components/ui/EdgeVines.tsx`](src/components/ui/EdgeVines.tsx). La sección
 contenedora necesita `relative isolate overflow-hidden`.
-`prefers-reduced-motion` deja las lianas quietas.
+`prefers-reduced-motion` deja las lianas y las hojas quietas.
+
+## Logotipo
+
+`Wordmark` (navbar/footer) y `LogoMark` (el ícono solo, reutilizado como
+acento decorativo) viven en
+[`src/components/ui/Wordmark.tsx`](src/components/ui/Wordmark.tsx): un brote
+de tres hojas dibujado en SVG, sin subtítulo, que hereda el color del fondo
+(`tone="light|dark"`) — no depende de ninguna imagen, por lo que no hay fondo
+blanco que eliminar al colocarlo sobre el sitio.
 
 ## Accesibilidad y rendimiento
 

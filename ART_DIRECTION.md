@@ -65,8 +65,20 @@ contenido (`-z-[1]`) y **se desplaza con el scroll**.
   vuelve, nunca salta**. Dos capas desfasadas rompen la simetría del espejo.
   Propiedades `translate`/`rotate` → compuesto en GPU.
 - `tone` aplica un `filter` (aclara los verdes sobre oliva/negro).
-- `aria-hidden`, `pointer-events-none`. `prefers-reduced-motion`: lianas
-  quietas (`.vine-strip { translate:0; rotate:0 }`).
+- **Hojas de esquina** (`CornerLeaf`): en cada una de las 4 esquinas, dos
+  siluetas de hoja tropical en SVG (una grande + una menor, distinta rotación
+  y opacidad) para reforzar el carácter de selva sin saturar el centro. Vaivén
+  propio y muy tenue (`@keyframes leaf-sway`, ±1.6°, 11 s, alternate).
+- `aria-hidden`, `pointer-events-none`. `prefers-reduced-motion`: lianas y
+  hojas quietas (`.vine-strip`/`.leaf-sway` fijan `translate`/`rotate` a 0).
+
+## Logotipo (`Wordmark` / `LogoMark`)
+
+Brote de tres hojas (hoja central alta + dos laterales) dibujado en SVG puro
+— sin imagen de trazado, así que no hay fondo blanco que recortar y se
+integra sobre cualquier fondo (claro u oscuro) heredando `currentColor` según
+`tone`. Sin subtítulo/tagline bajo el nombre. Se usa en `Navbar`, `Footer` y
+como acento decorativo en `BrandPhilosophy` y en el CTA final de inicio.
 
 ## Layout
 

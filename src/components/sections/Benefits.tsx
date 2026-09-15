@@ -1,53 +1,39 @@
-import { Leaf, Sparkles, Recycle, Home } from "lucide-react";
+import { Leaf, HeartHandshake, Recycle, Home } from "lucide-react";
 import { EdgeVines } from "@/components/ui/EdgeVines";
 import { Reveal } from "@/components/ui/Reveal";
 
 const benefits = [
-  {
-    icon: Leaf,
-    title: "Inspirado en la naturaleza",
-    text: "Fórmulas pensadas desde una perspectiva más consciente, con ingredientes de origen natural.",
-  },
-  {
-    icon: Sparkles,
-    title: "Limpieza efectiva",
-    text: "Productos diseñados para mantener tus espacios limpios en el uso diario.",
-  },
-  {
-    icon: Recycle,
-    title: "Consumo consciente",
-    text: "Una alternativa para quienes buscan reducir el impacto de sus hábitos de limpieza.",
-  },
-  {
-    icon: Home,
-    title: "Para tu espacio",
-    text: "Soluciones pensadas para formar parte de tu rutina, sin complicarla.",
-  },
+  { icon: Leaf, label: "Ingredientes naturales" },
+  { icon: HeartHandshake, label: "Libre de crueldad animal" },
+  { icon: Recycle, label: "Biodegradables" },
+  { icon: Home, label: "Un hogar más verde" },
 ];
 
+/**
+ * Franja compacta de atributos de marca: icono + etiqueta, separados por
+ * divisores finos. Pensada como pausa breve entre secciones, no como bloque
+ * de contenido largo.
+ */
 export function Benefits() {
   return (
-    <section className="relative isolate overflow-hidden py-24 md:py-32">
+    <section className="relative isolate overflow-hidden py-16 md:py-20">
       <EdgeVines tone="light" />
       <div className="shell">
-      <Reveal className="max-w-2xl">
-        <p className="eyebrow">Por qué Tierra Sana</p>
-        <h2 className="display mt-4">Una forma distinta de limpiar.</h2>
-      </Reveal>
-
-      <div className="mt-16 grid gap-x-10 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-        {benefits.map((b, i) => (
-          <Reveal key={b.title} delay={i * 0.08} as="div">
-            <b.icon
-              className="h-6 w-6 text-olive"
-              strokeWidth={1.4}
-              aria-hidden
-            />
-            <h3 className="mt-5 font-serif text-lg">{b.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-stone">{b.text}</p>
-          </Reveal>
-        ))}
-      </div>
+        <ul className="grid grid-cols-2 divide-olive/10 sm:grid-cols-4 sm:divide-x">
+          {benefits.map((b, i) => (
+            <Reveal
+              key={b.label}
+              delay={i * 0.08}
+              as="li"
+              className="flex flex-col items-center gap-3 border-b border-olive/10 px-4 py-8 text-center sm:border-b-0 sm:py-0"
+            >
+              <b.icon className="h-6 w-6 text-olive" strokeWidth={1.3} aria-hidden />
+              <span className="text-[0.68rem] uppercase leading-tight tracking-[0.16em] text-ink/75">
+                {b.label}
+              </span>
+            </Reveal>
+          ))}
+        </ul>
       </div>
     </section>
   );

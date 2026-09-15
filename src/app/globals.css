@@ -103,6 +103,10 @@
     translate: 0 0 !important;
     rotate: 0deg !important;
   }
+  /* hojas de esquina: quietas */
+  .leaf-sway {
+    rotate: 0deg !important;
+  }
 }
 
 /* Marco de lianas: vaivén lateral + giro muy leve, tipo serpiente. Se usa con
@@ -117,6 +121,21 @@
     translate: 20px 0;
     rotate: 0.8deg;
   }
+}
+
+/* Hojas de esquina: vaivén tenue, como una brisa suave. `rotate` es
+   independiente del `transform` estático que orienta cada hoja. */
+@keyframes leaf-sway {
+  from {
+    rotate: -1.6deg;
+  }
+  to {
+    rotate: 1.8deg;
+  }
+}
+.leaf-sway {
+  animation: leaf-sway 11s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
 /* Grano sutil opcional para fondos oscuros */

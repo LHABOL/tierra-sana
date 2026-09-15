@@ -3,8 +3,9 @@ import { clsx } from "clsx";
 import { site } from "@/lib/site";
 
 /**
- * Logotipo tipográfico. Marca de hoja sutil + nombre en serif.
- * Sustituible por un SVG de marca sin tocar el resto del layout.
+ * Logotipo de marca: brote de tres hojas (como en el sello oficial) + nombre
+ * en serif. Vectorial → sin fondo blanco que recortar, se integra sobre
+ * cualquier fondo (oscuro en el hero, claro en el resto del sitio).
  */
 export function Wordmark({
   tone = "dark",
@@ -23,22 +24,31 @@ export function Wordmark({
         className,
       )}
     >
-      <svg
-        viewBox="0 0 24 24"
-        className="h-5 w-5"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.4}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden
-      >
-        <path d="M12 3C7 8 6.5 15 12 21C17.5 15 17 8 12 3Z" />
-        <path d="M12 6V19" />
-      </svg>
+      <LogoMark className="h-6 w-6" />
       <span className="whitespace-nowrap font-serif text-lg tracking-tight">
         {site.name}
       </span>
     </Link>
+  );
+}
+
+/** Brote de tres hojas: hoja central alta + dos hojas laterales más cortas. */
+export function LogoMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 32 34"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.3}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M16 32V13" />
+      <path d="M16 13C10.5 13 7 17.5 7 24C13.5 23.3 16 19 16 13Z" />
+      <path d="M16 15C21.5 15 25 19 25 24.5C18.5 23.8 16 20 16 15Z" />
+      <path d="M16 13C14.5 8 15 3 16 2C17 3 17.5 8 16 13Z" />
+    </svg>
   );
 }

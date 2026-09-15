@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 
 /**
- * Marco fino de liana real en los **4 bordes** de una sección, **en el fondo**
+ * Marco de selva en los **4 bordes** de una sección, **en el fondo**
  * (detrás del contenido, se desplaza con el scroll).
  *
  * - La liana es un fotograma del video de referencia, recortado y con el fondo
@@ -16,10 +16,13 @@ import type { CSSProperties } from "react";
  * - Movimiento tipo serpiente, 100% CSS: `@keyframes vine-serpent` (vaivén
  *   lateral + giro ≤ 0.8°) con `animation-direction: alternate` → va y vuelve,
  *   nunca “salta”. Propiedades `translate`/`rotate` → compuesto en GPU.
+ * - Además, 4 grupos de hojas grandes (`CornerLeaf`) en cada esquina, dibujadas
+ *   en SVG, con un vaivén tenue propio (`leaf-sway`) para reforzar el
+ *   carácter de selva sin saturar el centro de la sección.
  * - `tone` aclara los verdes sobre fondos oscuros.
  * - Va detrás del contenido (`-z-[1]`; la sección necesita `relative isolate
  *   overflow-hidden`). `aria-hidden`, `pointer-events-none`.
- * - `prefers-reduced-motion` deja las lianas quietas.
+ * - `prefers-reduced-motion` deja las lianas y las hojas quietas.
  */
 
 const THICK = "clamp(96px, 15vw, 210px)";
@@ -97,6 +100,78 @@ function Band({ edge, tone }: { edge: Edge; tone: Tone }) {
   );
 }
 
+type Corner = "tl" | "tr" | "bl" | "br";
+
+// Dos siluetas de hoja tropical (proporción distinta) reutilizadas y
+// espejadas/rotadas por esquina para que el ramo no se vea repetido.
+const LEAF_A =
+  "M50 2C18 10 4 34 6 62C34 60 54 44 58 18C60 12 56 6 50 2Z M8 60C20 52 30 42 34 30";
+const LEAF_B =
+  "M46 4C20 4 4 22 4 46C26 48 44 36 50 16C52 10 50 6 46 4Z M8 44C18 38 26 30 30 20";
+
+const CORNER_ORIGIN: Record<Corner, CSSProperties> = {
+  tl: { top: 0, left: 0, transformOrigin: "0% 0%" },
+  tr: { top: 0, right: 0, transformOrigin: "100% 0%" },
+  bl: { bottom: 0, left: 0, transformOrigin: "0% 100%" },
+  br: { bottom: 0, right: 0, transformOrigin: "100% 100%" },
+};
+
+// Rotación base por esquina para que las hojas "crezcan" hacia el centro.
+const CORNER_ROTATE: Record<Corner, number> = {
+  tl: 0,
+  tr: 90,
+  br: 180,
+  bl: 270,
+};
+
+function CornerLeaf({ corner, tone }: { corner: Corner; tone: Tone }) {
+  const color = tone === "dark" ? "#8A9A7B" : "#5B6B4A";
+  const base = CORNER_ROTATE[corner];
+
+  return (
+    <div
+      className="absolute"
+      style={{
+        ...CORNER_ORIGIN[corner],
+        width: "clamp(120px, 20vw, 260px)",
+        height: "clamp(120px, 20vw, 260px)",
+      }}
+    >
+      <svg
+        viewBox="0 0 64 64"
+        className="leaf-sway absolute inset-0"
+        style={{
+          transform: `rotate(${base}deg)`,
+          transformOrigin: "0 0",
+          opacity: tone === "dark" ? 0.4 : 0.34,
+          animationDelay: "0s",
+        }}
+        fill={color}
+        stroke={color}
+        strokeWidth={0.6}
+      >
+        <path d={LEAF_A} />
+      </svg>
+      <svg
+        viewBox="0 0 64 64"
+        className="leaf-sway absolute inset-0"
+        style={{
+          transform: `rotate(${base + 24}deg) scale(0.72)`,
+          transformOrigin: "0 0",
+          opacity: tone === "dark" ? 0.3 : 0.26,
+          animationDelay: "-4s",
+          animationDirection: "alternate-reverse",
+        }}
+        fill={color}
+        stroke={color}
+        strokeWidth={0.6}
+      >
+        <path d={LEAF_B} />
+      </svg>
+    </div>
+  );
+}
+
 export function EdgeVines({
   tone = "light",
   opacity,
@@ -114,6 +189,11 @@ export function EdgeVines({
       <Band edge="bottom" tone={tone} />
       <Band edge="left" tone={tone} />
       <Band edge="right" tone={tone} />
+
+      <CornerLeaf corner="tl" tone={tone} />
+      <CornerLeaf corner="tr" tone={tone} />
+      <CornerLeaf corner="bl" tone={tone} />
+      <CornerLeaf corner="br" tone={tone} />
     </div>
   );
 }
