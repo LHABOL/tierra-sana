@@ -4,18 +4,20 @@ import { clsx } from "clsx";
 import { site } from "@/lib/site";
 
 /**
- * Logotipo oficial: el sello real de la marca (recortado de
- * `/public/imagenes/logo-tierra-sana.webp`), sin el subtítulo y con el
- * blanco de alrededor eliminado (fondo transparente) — solo queda el sello
- * verde con el brote de tres hojas y "TIERRA SANA". El sello mantiene su
- * propio verde fijo (no cambia con `tone`); por eso se deja más alto que la
- * barra de navegación para que el texto siga siendo legible.
+ * Logotipo oficial: recorte real del brote de tres hojas + "TIERRA SANA"
+ * (del sello que entregó el cliente), sin el óvalo verde ni el subtítulo —
+ * solo las hojas y el nombre, con la hoja por encima del nombre, sobre fondo
+ * transparente. Como ya no hay un óvalo de color de fondo, se generaron dos
+ * variantes de color (mismo recorte, mismo alfa) para que siga siendo
+ * visible sobre cualquier fondo del sitio: crema para fondos oscuros
+ * (`tone="light"` de texto, sobre el hero) y oliva para fondos claros.
  */
 export function Wordmark({
+  tone = "dark",
   className,
 }: {
-  /** Se acepta por compatibilidad con los llamados existentes; el sello
-   * real tiene su propio verde fijo y no cambia de color. */
+  /** "dark" = fondo claro alrededor (texto/ícono oscuro). "light" = fondo
+   * oscuro alrededor, como el hero (texto/ícono claro). */
   tone?: "dark" | "light";
   className?: string;
 }) {
@@ -24,17 +26,21 @@ export function Wordmark({
       href="/"
       aria-label={`${site.name} — inicio`}
       className={clsx(
-        "inline-flex items-center self-start pt-1.5 transition-opacity duration-300 hover:opacity-80",
+        "inline-flex items-center transition-opacity duration-300 hover:opacity-80",
         className,
       )}
     >
       <Image
-        src="/imagenes/logo-tierra-sana.webp"
+        src={
+          tone === "light"
+            ? "/imagenes/logo-tierra-sana-cream.webp"
+            : "/imagenes/logo-tierra-sana-olive.webp"
+        }
         alt={site.name}
-        width={700}
-        height={569}
+        width={620}
+        height={414}
         priority
-        className="h-[92px] w-auto object-contain"
+        className="h-11 w-auto object-contain"
       />
     </Link>
   );

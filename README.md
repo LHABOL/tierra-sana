@@ -112,24 +112,32 @@ contenedora necesita `relative isolate overflow-hidden`.
 
 ## Logotipo
 
-`Wordmark` (navbar/footer) usa el **sello oficial real** de la marca:
-`public/imagenes/logo-tierra-sana.webp` (+ `.png` de respaldo), recortado del
-archivo que entregó el cliente (`public/imagenes/Logo Tierra sana.jpeg`) —
-se le quitó el subtítulo ("Cosméticos · Higiene · Limpieza natural") y el
-fondo blanco de alrededor (queda transparente). El sello conserva su propio
-verde, por lo que se muestra un poco más alto que la barra de navegación
-para que "TIERRA SANA" siga siendo legible. `LogoMark` (el ícono de tres
-hojas en SVG, sin el sello) vive en el mismo archivo
+`Wordmark` (navbar/footer) usa el recorte real del brote de tres hojas +
+"TIERRA SANA" del sello que entregó el cliente
+(`public/imagenes/Logo Tierra sana.jpeg`) — **sin** el óvalo verde de fondo
+y **sin** el subtítulo ("Cosméticos · Higiene · Limpieza natural"): solo las
+hojas, por encima del nombre, sobre fondo transparente. Como ya no hay un
+óvalo de color detrás, hay dos variantes con el mismo recorte/alfa —
+`logo-tierra-sana-cream.webp` (crema, fondos oscuros) y
+`logo-tierra-sana-olive.webp` (oliva, fondos claros) — y `Wordmark({ tone })`
+elige la que corresponde. `LogoMark` (el mismo brote de tres hojas en SVG)
+vive en el mismo archivo
 ([`src/components/ui/Wordmark.tsx`](src/components/ui/Wordmark.tsx)) y se
 usa como acento decorativo pequeño en `BrandPhilosophy` y en el CTA final de
 inicio.
 
 Para volver a generar el recorte a partir del JPEG original (por ejemplo si
-llega una versión con más resolución), el flujo con `ffmpeg` fue: recortar al
-óvalo del sello, pintar la franja del subtítulo con el verde del sello
-(`~#6B8973`) y usar el canal azul (`b(X,Y)`) para construir el canal alfa —
-separa mejor el blanco puro del crema de las hojas que un `colorkey` normal,
-que confundía ambos colores.
+llega una versión con más resolución), el flujo con `ffmpeg` fue: pintar la
+franja del subtítulo con el verde del sello para "borrarla", recortar al
+brote de hojas + nombre, y construir el canal alfa a partir de la diferencia
+`r(X,Y)-g(X,Y)` (positiva y grande solo en el crema de las hojas/letras;
+cercana a 0 o negativa en el blanco y en el verde) — separa el crema mejor
+que un `colorkey` por distancia de color, que confundía blanco, verde y
+crema entre sí. Un filtro `median` antes del alfa quita el ruido de
+compresión del JPEG sin borrar los trazos finos del texto. Por último, con
+el alfa ya calculado, se puede recolorear el relleno completo (`geq`/
+`alphamerge` con un color sólido) para generar cualquier variante de color
+sin repetir el recorte.
 
 ## Accesibilidad y rendimiento
 

@@ -74,20 +74,18 @@ contenido (`-z-[1]`) y **se desplaza con el scroll**.
 
 ## Logotipo (`Wordmark` / `LogoMark`)
 
-`Wordmark` usa el **sello oficial real** de la marca
-(`public/imagenes/logo-tierra-sana.webp`, recortado del archivo original del
-cliente): el óvalo verde con el brote de tres hojas y "TIERRA SANA", **sin**
-el subtítulo ("Cosméticos · Higiene · Limpieza natural") y **sin** el blanco
-de alrededor — se le quitó el fondo digitalmente para que quede transparente
-e integrado sobre cualquier color. El sello tiene su propio verde fijo (no
-cambia con `tone`), así que se muestra más alto que la barra de navegación
-(`h-[92px]` vs. los 68px de la barra) para que el texto siga siendo legible;
-se alinea al **tope** de su contenedor (`self-start`), no al centro, para no
-recortarse contra el borde superior de la página. Se usa en `Navbar` y
-`Footer`. `LogoMark` (el brote de tres hojas en SVG puro, sin el sello) sigue
-existiendo como acento decorativo pequeño en `BrandPhilosophy` y en el CTA
-final de inicio, donde un ícono vectorial es más práctico que el sello
-completo.
+`Wordmark` usa el recorte real del **brote de tres hojas + "TIERRA SANA"**
+del sello que entregó el cliente — sin el óvalo verde y sin el subtítulo
+("Cosméticos · Higiene · Limpieza natural"), solo las hojas por encima del
+nombre, sobre fondo transparente. Como ya no hay un óvalo de color detrás,
+existen **dos variantes de color** con el mismo recorte y el mismo canal
+alfa: `logo-tierra-sana-cream.webp` (crema, para fondos oscuros) y
+`logo-tierra-sana-olive.webp` (oliva, para fondos claros) —
+`Wordmark({ tone })` elige la que corresponde, igual que hacía antes el SVG
+con `currentColor`. Tamaño normal de navbar (`h-11`), sin trucos de overflow.
+Se usa en `Navbar` y `Footer`. `LogoMark` (el mismo brote de tres hojas pero
+dibujado en SVG puro) sigue existiendo como acento decorativo pequeño en
+`BrandPhilosophy` y en el CTA final de inicio.
 
 ## Layout
 
